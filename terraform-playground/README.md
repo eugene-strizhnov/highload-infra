@@ -6,5 +6,5 @@ Also you will need to specify user . It can be done either with dinoing set of u
 
 ```sh
 export TF_VAR_public_ssh_key=$PUBLIC_SSH_KEY
-terraform -chdir=terraform plan
+terraform -chdir=terraform -var-file=foo.tfvars plan
 ```
