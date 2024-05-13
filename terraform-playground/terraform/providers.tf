@@ -8,6 +8,6 @@ terraform {
 
 provider "yandex" {
   zone                     = var.zone
-  service_account_key_file = var.account_key_file
+  service_account_key_file = var.account_key_file_path
   folder_id                = var.folder_id
 }
