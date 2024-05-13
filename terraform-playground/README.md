@@ -1,5 +1,8 @@
 ## Setup
 
+### 1. npm installation
+
+
 ### 1. Ansible installation
 
 

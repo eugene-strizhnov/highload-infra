@@ -4,4 +4,4 @@
   become: yes
 
   roles:
-    - nginx
+    - role: nginx

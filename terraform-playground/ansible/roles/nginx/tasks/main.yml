@@ -1,5 +1,8 @@
-
 ---
+- name: print variables
+  debug:
+    msg: "local website directory: {{ web_build_path }}"
+
 - name: Setup environment, python and base packages
   import_tasks: base-packages.yml
 

@@ -1,6 +1,6 @@
 locals {
   nginx_vm_prefix = "nginx"
-  user_name = "ubuntu"
+  user_name       = "ubuntu"
 }
 
 resource "yandex_compute_disk" "nginx_disk" {

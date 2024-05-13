@@ -21,7 +21,6 @@ terraform-playground/web/coverage
 terraform-playground/web/build
 
 ## misc
-
 .DS_Store
 .env.local
 .env.development.local

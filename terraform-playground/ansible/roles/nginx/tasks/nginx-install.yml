@@ -1,15 +1,15 @@
 ---
-
 - name: install nginx
   package:
     name:
       - nginx
     state: latest
   become: yes
-  notify: restart nginx
 
-    #  - name: copy index.html
-    #    copy:
-    #      src: index.html
-  #      dest: /usr/share/nginx/html/index.html
-  #    become: yes
+- name: copy website
+  synchronize:
+    src: "{{ web_build_path }}/"
+    dest: /var/www/html/
+    checksum: yes
+  become: yes
+  notify: restart nginx
