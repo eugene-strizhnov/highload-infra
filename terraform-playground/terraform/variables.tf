@@ -22,13 +22,17 @@ variable "compute_image_id" {
   description = "image id for the compute instance"
 }
 
+variable "public_ssh_key" {
+  type        = string
+  default = null
+  description = "Public SSH key for user"
+}
+
 variable "users" {
   type = set(object({
     name                = string
     ssh-authorized-keys = list(string)
   }))
-  default = [
-    { name = "user1", ssh-authorized-keys = [required_env("PUBLIC_SSH_KEY")] },
-  ]
+  default     = null
   description = "set of users which will have ssh access to the vm"
 }

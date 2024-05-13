@@ -1,7 +1,17 @@
 locals {
   nginx_vm_prefix = "nginx"
-  vm_users        = [
-    for user in var.users :
+
+  users = var.users != null ? var.users : [
+    {
+      name = "user1",
+      ssh-authorized-keys = [
+        length(var.public_ssh_key) > 0 ? var.public_ssh_key : throw("you have to set value for the 'public_ssh_key'")
+      ]
+    }
+  ]
+
+  vm_users = [
+    for user in local.users :
     merge(user, yamldecode(file("${path.module}/user_config.yaml")))
   ]
 }
@@ -32,9 +42,9 @@ resource "yandex_compute_instance" "nginx_vm" {
   }
 
   metadata = {
-    user-data = {
+    user-data = yamlencode({
       users = local.vm_users
-    }
+    })
   }
 }
 
