@@ -31,6 +31,11 @@ ssh-add  ~/.ssh/yandex-vm
 
 ## Execution
 
+#### 1. init
+```sh
+terraform -chdir=terraform init
+```
+
 #### 1. plan
 ```sh
 terraform -chdir=terraform plan -var-file=../config.tfvars

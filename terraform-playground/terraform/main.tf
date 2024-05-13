@@ -43,3 +43,16 @@ resource "yandex_vpc_subnet" "subnet_1" {
   network_id     = yandex_vpc_network.network_1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
+
+module "web_app" {
+  source      = "./modules/web-app"
+  web_app_src = abspath("../web/")
+}
+
+module "nginx" {
+  source           = "./modules/nginx"
+  ansible_location = abspath("../ansible/")
+  server_ip        = yandex_compute_instance.nginx_vm.network_interface.0.nat_ip_address
+  ssh_user         = local.user_name
+  web_app          = module.web_app.build_location
+}
