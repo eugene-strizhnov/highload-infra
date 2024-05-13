@@ -30,10 +30,11 @@ Use ``setup.sh`` to configure a Python virtual environment (venv) and install th
 source ./setup_ansible.sh
 ```
 
-### 3. Config setup
+### 3. Configuration
 
-You must have a service account key file (e.g. named ``tf-key.json``).
-You have to specify its name along with folder id and path to you public ssh key in th ``config.tfvars`` file:
+You must have a service account key file (e.g. named ``tf-key.json``). and you have to specify its name along with the folder id and path to your public ssh key.
+
+E.g. ``config.tfvars`` file:
 ```
 public_ssh_key_path   = "~/.ssh/yandex-vm.pub"
 account_key_file_path = "../tf-key.json"
