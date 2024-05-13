@@ -1,0 +1,8 @@
+
+---
+- name: Setup environment, python and base packages
+  import_tasks: base-packages.yml
+
+- name: Configure nginx and related files
+  import_tasks: nginx-install.yml
+

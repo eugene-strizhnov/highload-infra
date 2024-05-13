@@ -1,5 +1,6 @@
 locals {
-  ansible_path = "../ansible/playbooks/configure-nginx.yml"
+  ansible_cfg_path = "../ansible/ansible.cfg"
+  ansible_playbook_path = "../ansible/playbooks/configure.yml"
 }
 
 resource "terraform_data" "ansible" {
@@ -23,8 +24,9 @@ resource "terraform_data" "ansible" {
 
   provisioner "local-exec" {
     command = <<-EOF
+      export ANSIBLE_CONFIG=${local.ansible_cfg_path} && \
       ansible-playbook -u ${local.user_name} --ssh-common-args='-o StrictHostKeyChecking=accept-new' \
-      -i '${yandex_compute_instance.nginx_vm.network_interface.0.nat_ip_address},' ${local.ansible_path}
+      -i '${yandex_compute_instance.nginx_vm.network_interface.0.nat_ip_address},' ${local.ansible_playbook_path}
     EOF
   }
 }

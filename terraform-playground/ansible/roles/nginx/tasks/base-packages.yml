@@ -1,0 +1,19 @@
+---
+- name: Update Package Lists
+  apt:
+    update_cache: yes
+    cache_valid_time: 368640000  # Cache is considered valid for 24 hours
+  become: yes
+
+- name: Install Python and Python3 PIP
+  apt:
+    name: 
+      - python3
+      - python3-pip
+      - python3-testresources
+    state: present
+    update_cache: yes
+  become: yes
+
+
+

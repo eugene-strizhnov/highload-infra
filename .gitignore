@@ -3,6 +3,7 @@ terraform-playground/tf-key.json
 terraform-playground/config.tfvars
 terraform-playground/terraform/.terraform
 terraform-playground/terraform/.terraform.lock.hcl
+terraform-playground/terraform/.terraform.tfstate.lock.info
 terraform-playground/terraform/terraform.tfstate
 terraform-playground/terraform/terraform.tfstate.backup
 
