@@ -1,0 +1,50 @@
+---
+- name: Download Node installer
+  get_url:
+    url: https://deb.nodesource.com/setup_20.x
+    dest: /tmp/node-setup.sh
+
+- name: Set execute permission on the script
+  file:
+    path: /tmp/node-setup.sh
+    mode: '0755'
+
+- name: Execute the node-setup.sh
+  shell: /tmp/node-setup.sh
+  become: yes
+
+- name: Install the nodejs
+  apt:
+    name: nodejs
+    state: present
+  become: yes
+
+- name: copy website
+  synchronize:
+    src: "{{ web_build_path }}/"
+    dest: /webapp/
+    checksum: yes
+  become: yes
+
+- name: install NPM modules
+  command: npm install
+  args:
+    chdir: /webapp/
+
+- name: install cross-env
+  command: npm install cross-env --global
+  become: yes
+
+- name: Create webapp systemd service file
+  template:
+    src: templates/webapp.service.j2
+    dest: /lib/systemd/system/webapp.service
+  vars:
+    webapp_dir: /webapp
+
+- name: Start webapp service
+  systemd:
+    daemon_reload: true
+    name: webapp
+    state: restarted
+  become: yes

@@ -1,6 +1,6 @@
 locals {
   ansible_cfg_path      = "${var.ansible_location}/ansible.cfg"
-  ansible_playbook_path = "${var.ansible_location}/playbooks/configure.yml"
+  ansible_playbook_path = "${var.ansible_location}/playbooks/configure-vm.yml"
 }
 
 resource "terraform_data" "ansible" {
@@ -9,13 +9,13 @@ resource "terraform_data" "ansible" {
 
 
   provisioner "remote-exec" {
-    inline = ["sudo echo 'Connecting ... '"]
-
     connection {
       type = "ssh"
       user = var.ssh_user
       host = var.server_ip
     }
+
+    inline = ["sudo echo 'Connection established!'"]
   }
 
   provisioner "local-exec" {

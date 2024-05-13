@@ -16,6 +16,7 @@ terraform-playground/web/.pnp
 
 # production
 terraform-playground/web/build
+terraform-playground/web/dist
 
 ## misc
 .pnp.js

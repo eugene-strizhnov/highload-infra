@@ -1,0 +1,11 @@
+[Unit]
+Description=Express server for remix project
+
+[Service]
+WorkingDirectory={{ webapp_dir }}
+ExecStart=cross-env NODE_ENV=production node ./express-server.js
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

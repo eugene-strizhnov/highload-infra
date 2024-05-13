@@ -1,21 +1,26 @@
 {
-  "name": "",
+  "name": "web",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "dev": "node ./express-server.js",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve build/server/index.js",
-    "typecheck": "tsc"
+    "start": "cross-env NODE_ENV=production node ./express-server.js",
+    "typecheck": "tsc",
+    "dist": "npm run build && rm -rf ./dist && mkdir ./dist && cp -r ./{build,public,express-server.js,package.json,package-lock.json} ./dist"
   },
   "dependencies": {
+    "@remix-run/express": "^2.9.2",
     "@remix-run/node": "^2.9.1",
     "@remix-run/react": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
     "isbot": "^4.1.0",
     "match-sorter": "^6.3.1",
+    "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sort-by": "^1.2.0",
@@ -27,6 +32,7 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
