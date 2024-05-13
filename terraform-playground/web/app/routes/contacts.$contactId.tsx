@@ -5,11 +5,11 @@ import invariant from "tiny-invariant";
 
 import {ContactRecord, getContact} from "~/data";
 
-export const loader = async ({params}:LoaderFunctionArgs) => {
+export const loader = async ({params}: LoaderFunctionArgs) => {
     invariant(params.contactId, "Missing contactId param");
     const contact = await getContact(params.contactId);
     if (!contact) {
-        throw new Response("Not Found", { status: 404 });
+        throw new Response("Not Found", {status: 404});
     }
     // invariant(contact, "Didnt find contact");
     return json({contact});
