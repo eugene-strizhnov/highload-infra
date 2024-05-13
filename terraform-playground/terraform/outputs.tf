@@ -5,3 +5,9 @@ output "nginx_internal_ip" {
 output "nginx_external_ip" {
   value = yandex_compute_instance.nginx_vm.network_interface.0.nat_ip_address
 }
+
+output "test" {
+  value = yamlencode({
+    users = local.vm_users
+  })
+}
