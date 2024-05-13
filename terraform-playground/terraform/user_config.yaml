@@ -1,0 +1,3 @@
+groups: sudo
+shell: /bin/bash
+sudo: 'ALL=(ALL) NOPASSWD:ALL'
