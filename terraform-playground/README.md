@@ -19,7 +19,6 @@ Also you will need to specify user . create ``config``
 
 ```
 public_ssh_key_path   = "~/.ssh/yandex-vm.pub"
-private_ssh_key_path  = "~/.ssh/yandex-vm"
 account_key_file_path = "../tf-key.json"
 folder_id = "******"
 ```

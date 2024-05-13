@@ -1,4 +1,8 @@
 ---
+- name: Set local variables
+  set_fact:
+    web_app_path: /webapp
+
 - name: Download Node installer
   get_url:
     url: https://deb.nodesource.com/setup_20.x
@@ -22,14 +26,14 @@
 - name: copy website
   synchronize:
     src: "{{ web_build_path }}/"
-    dest: /webapp/
+    dest: "{{ web_app_path }}/"
     checksum: yes
   become: yes
 
 - name: install NPM modules
   command: npm install
   args:
-    chdir: /webapp/
+    chdir: "{{ web_app_path }}/"
 
 - name: install cross-env
   command: npm install cross-env --global
@@ -40,7 +44,7 @@
     src: templates/webapp.service.j2
     dest: /lib/systemd/system/webapp.service
   vars:
-    webapp_dir: /webapp
+    webapp_dir: "{{ web_app_path }}"
 
 - name: Start webapp service
   systemd:

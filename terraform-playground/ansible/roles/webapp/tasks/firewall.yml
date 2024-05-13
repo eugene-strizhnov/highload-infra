@@ -1,0 +1,47 @@
+- name: Ensure firewalld is installed and running
+  ansible.builtin.package:
+    name: firewalld
+    state: present
+
+- name: Ensure firewalld service is started and enabled
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+# Allow HTTP on port 80
+- name: Allow HTTP traffic
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    zone: public
+
+# Allow HTTPS on port 443
+- name: Allow HTTPS traffic
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+    zone: public
+
+# Allow SSH traffic
+- name: Allow SSH traffic
+  ansible.posix.firewalld:
+    service: ssh
+    permanent: true
+    state: enabled
+    zone: public
+
+# Allow ICMP traffic
+- name: Allow ICMP traffic
+  ansible.posix.firewalld:
+    rich_rule: 'rule protocol value="icmp" accept'
+    permanent: true
+    state: enabled
+    zone: public
+
+
+- name: Reload firewalld to apply all changes
+  ansible.builtin.command:
+    cmd: firewall-cmd --reload

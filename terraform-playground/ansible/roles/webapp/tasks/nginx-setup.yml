@@ -6,3 +6,9 @@
     state: latest
   become: yes
 
+- name: Create nginx config
+  template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/sites-enabled/default
+  notify: restart nginx
+

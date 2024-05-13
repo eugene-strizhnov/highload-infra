@@ -1,8 +1,3 @@
-variable "private_ssh_key_path" {
-  type        = string
-  description = "Public SSH key for user"
-}
-
 variable "public_ssh_key_path" {
   type        = string
   description = "Public SSH key for user"
