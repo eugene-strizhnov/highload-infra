@@ -58,4 +58,6 @@ jobs:
           cache-dependency-path:  terraform-playground/web/package-lock.json
     # Runs a single command using the runners shell
       - name: Send greeting
-        run: echo "Hello ${{ inputs.name }}"
+        env:
+            SOME_SECRET: ${{ secrets.TEST }}
+        run: echo "Hello $SOME_SECRET"
