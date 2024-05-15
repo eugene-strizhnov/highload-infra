@@ -44,7 +44,7 @@ jobs:
         with:
           repository: ${{ github.repository }}
           ref: main
-          path: repo
+          # path: repo
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.2
         with:
